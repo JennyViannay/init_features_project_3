@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Hello {{app.user.username}}</h1>
+        </div>
+    </div>
+    users :
+    <ul>
+        {% for user in users %}
+        {% if user.id != app.user.id %}
+            <li>envoyer un message à {{ user.email }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    conversations :
+    <ul>
+        {% for conversation in conversations %}
+            <li>dernier message "{{ conversation.lastMessage.content }}" rejoindre la conversation {{ conversation.id }} avec {{ conversation.users[0]}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

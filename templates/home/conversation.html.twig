@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <ul>
+        {% for message in messages %}
+        {% if message.author.id == app.user.id %}
+        <li>"{{ message.content }}" - envoyé le {{ message.createdAt|date('d-m-y à H:i:s') }}</li>
+        {% else %}
+        <li>"{{ message.content }}" - de {{message.author}} - reçu le {{ message.createdAt|date('d-m-y à H:i:s') }}</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn">{{ button_label|default('Send') }}</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
